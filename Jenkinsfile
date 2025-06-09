@@ -53,6 +53,8 @@ pipeline {
                    steps {
                 withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_PAT')]) {
                     sh '''
+                        export CODEQL_HOME=/home/kali/codeql
+                        export CODEQL_PATH=$CODEQL_HOME/codeql
                         echo "$GITHUB_PAT" | $CODEQL_PATH github upload-results \
                           --sarif=./temp/results-java.sarif \
                           --github-auth-stdin \

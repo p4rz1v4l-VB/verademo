@@ -50,8 +50,9 @@ pipeline {
             }        
     }
               stage('Upload results to GitHub') {
-            steps {
-                 sh '''
+                   steps {
+                withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_PAT')]) {
+                    sh '''
                         echo "$GITHUB_PAT" | $CODEQL_PATH github upload-results \
                           --sarif=./temp/results-java.sarif \
                           --github-auth-stdin \
@@ -59,7 +60,9 @@ pipeline {
                           --repository=p4rz1v4l-VB/verademo \
                           --ref=refs/heads/main
                     '''
+                }
             }
+            
         }
     
 }

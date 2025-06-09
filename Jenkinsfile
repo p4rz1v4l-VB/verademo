@@ -51,7 +51,7 @@ pipeline {
     }
               stage('Upload results to GitHub') {
             steps {
-                sh "/home/kali/codeql/codeql github upload-results --sarif=./temp/results-java.sarif --github-auth-stdin --github-url=https://github.com/ --repository=p4rz1v4l-VB/verademo --ref=refs/heads/main"
+                sh "/home/kali/codeql/codeql github upload-results --sarif=./temp/results-java.sarif --github-auth-stdin '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' --github-url=https://github.com/ --repository=p4rz1v4l-VB/verademo --ref=refs/heads/main"
                 // example: sh "../codeql/codeql github upload-results --sarif=./temp/results-java.sarif --github-auth-stdin --github-url=https://github.com/ --repository=octo-org/example-repo-2 --ref=refs/heads/main --commit=deb275d2d5fe9a522a0b7bd8b6b6a1c939552718"
             }
         }
